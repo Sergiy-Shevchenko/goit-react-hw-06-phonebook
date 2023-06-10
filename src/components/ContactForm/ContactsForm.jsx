@@ -1,26 +1,42 @@
+import { useDispatch, useSelector } from 'react-redux';
 
-import { useDispatch } from 'react-redux';
-import { nanoid } from 'nanoid';
+import { Notify } from 'notiflix';
+import { addContact } from 'redux/action';
 import css from './ContactForm.module.css';
 
+
 export const ContactsForm = () => {
- 
-const dispatch = useDispatch();
+    
+  const contacts = useSelector((state)=> state.contacts)
   
-  
+  const dispatch = useDispatch();
+
   const hendleSubmit = event => {
     event.preventDefault();
+
+
     const name = event.target.name.value;
-    console.log(name)
-    const number = event.target.number.value; 
-    console.log(number)
+    // console.log(name);
+    const number = event.target.number.value;
+    // console.log(number);
+//------------------------------------------------
+const notmalizeNewContact = name.toLocaleLowerCase();
+    if (name === '') {
+      return Notify.warning(`Please enter your name`);
+    }
+    if (number === '') {
+      return Notify.warning(`${name} please enter your number`);
+    }
+    if (
+      contacts.find(
+        contact => contact.name.toLocaleLowerCase() === notmalizeNewContact
+      )
+    ) {
+      return Notify.failure(`${name} is alredy in contacts`);
+    }
 
-    dispatch ({type: 'contacts/addContact', payload: {
-      id: nanoid(),
-      name: name,
-      number:number,
-    }})
 
+dispatch(addContact(name, number))    
 
 
   };
@@ -63,23 +79,6 @@ const dispatch = useDispatch();
     </div>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //--------------------------------------------------------------------------------4-d-z----------------------------------------------------------
 // import { useState } from 'react';
@@ -149,4 +148,3 @@ const dispatch = useDispatch();
 // ContactsForm.propTypes = {
 //   addContactProps: PropTypes.func.isRequired,
 // };
-

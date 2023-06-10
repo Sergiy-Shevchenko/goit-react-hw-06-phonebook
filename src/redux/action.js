@@ -1,14 +1,26 @@
-import { nanoid} from "nanoid";
+import { nanoid } from 'nanoid';
 
-// export const addContact = text => {
-//     return {
-//         type: "addContact",
-//         playload: (
-//             id: nanoid(),
-//             name: '',
-//             number: '',
-//             text
-//         )
+export const addContact = (name, number) => {
+  return {
+    type: 'contacts/addContact',
+    payload: {
+      id: nanoid(),
+      name: name,
+      number: number,
+    },
+  };
+};
 
-//     }
-// }
+export const deleteContact = id => {
+  return {
+    type: 'contacts/deleteContact',
+    payload: id,
+  };
+};
+
+export const filterContacts = value => {
+  return {
+    type: 'filter/filterContact',
+    payload: value,
+  };
+};

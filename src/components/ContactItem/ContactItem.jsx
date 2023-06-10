@@ -3,44 +3,36 @@ import PropTypes from 'prop-types';
 import css from './ContactItem.module.css';
 
 import { ReactComponent as AddIcon } from '../Icons/phone.svg';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from 'redux/action';
 
-export const ContactsItem = ({ deleteUserProps }) => {
+export const ContactsItem = ({ id, name, number }) => {
+  const dispatch = useDispatch();
 
-  const contacts = useSelector((state)=> state.contacts)
-  
+  const handleDelete = () => dispatch(deleteContact(id));
+
   return (
     <>
-      {contacts.map(({ name, number, id }) => (
-        <li className={css.contactItem} key={id}>
-          <p className={css.contacName}>
-            <AddIcon />
-            {name}: {number}
-          </p>
-          <button type="button" onClick={() => deleteUserProps(id)}>
-            Delete
-          </button>
-        </li>
-      ))}
+      <li className={css.contactItem} key={id}>
+        <p className={css.contacName}>
+          <AddIcon />
+          {name}: {number}
+        </p>
+        <button type="button" onClick={handleDelete}>
+          Delete
+        </button>
+      </li>
     </>
   );
 };
 
 ContactsItem.propTypes = {
-  deleteUserProps: PropTypes.func.isRequired,
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ),
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
 };
 
 export default ContactsItem;
-
-
-
 
 //------------------------------------------4-d-z--------------------------------------
 // import React from 'react';

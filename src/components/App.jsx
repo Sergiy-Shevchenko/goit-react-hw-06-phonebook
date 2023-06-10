@@ -70,7 +70,9 @@ export const App = () => {
       <h2 className={css.title}>Contacts</h2>
       <h3 className={css.inputName}>Find contacts by name</h3>
       <Filter value={filter} onChange={changeFilter} />
-      <ContactsList contacts={visibleContact} deleteUserProps={deleteUser} />
+      <ContactsList 
+      contacts={visibleContact} 
+      deleteUserProps={deleteUser} />
     </div>
   );
 };
