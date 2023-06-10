@@ -8,8 +8,8 @@ export const Filter = () => {
   const filter = useSelector(state => state.filter.value);
   const dispatch = useDispatch();
 
-  const handleFilterChange = event =>
-    dispatch(filterContacts(event.target.value));
+  const handleFilterChange = ({target: {value}}) =>
+    dispatch(filterContacts(value));
 
   return (
     <input

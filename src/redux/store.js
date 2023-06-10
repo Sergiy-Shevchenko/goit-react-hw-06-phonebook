@@ -31,8 +31,8 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         filter: {
-          ...state.filter,
-          id: action.payload,
+          ...state.contacts,
+        id: action.payload,
         },
       };
     default:
