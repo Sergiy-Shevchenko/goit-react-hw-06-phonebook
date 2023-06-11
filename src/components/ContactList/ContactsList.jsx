@@ -12,9 +12,7 @@ const filterContacts = (contacts, filter) => {
 
 export const ContactsList = () => {
   const contacts = useSelector(state => state.contacts);
-  console.log(contacts);
   const filter = useSelector(state => state.filter.id);
-  console.log(filter);
   const visibleContacts = filterContacts(contacts, filter);
 
   return (

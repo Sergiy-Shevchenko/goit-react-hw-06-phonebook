@@ -1,8 +1,9 @@
 import { nanoid } from 'nanoid';
+import { CONTACT_ADD, CONTACT_DELETE, CONTACT_FILTER } from './types';
 
 export const addContact = (name, number) => {
   return {
-    type: 'contacts/addContact',
+    type: CONTACT_ADD,
     payload: {
       id: nanoid(),
       name: name,
@@ -13,14 +14,14 @@ export const addContact = (name, number) => {
 
 export const deleteContact = id => {
   return {
-    type: 'contacts/deleteContact',
+    type: CONTACT_DELETE,
     payload: id,
   };
 };
 
 export const filterContacts = value => {
   return {
-    type: 'filter/filterContact',
+    type: CONTACT_FILTER,
     payload: value,
   };
 };
