@@ -10,7 +10,7 @@ const initialState = {
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
   ],
   filter: {
-    id: ' ',
+    id: '',
   },
 };
 
@@ -27,12 +27,12 @@ const rootReducer = (state = initialState, action) => {
         ),
       };
     }
-    case 'filters/filterContact':
+    case 'filter/filterContact':
       return {
         ...state,
         filter: {
           ...state.contacts,
-        id: action.payload,
+      id: action.payload,
         },
       };
     default:
