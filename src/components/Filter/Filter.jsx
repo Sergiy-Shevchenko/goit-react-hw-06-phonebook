@@ -2,10 +2,12 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import css from './Filter.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { filterContacts } from 'redux/action';
+// import { filterContacts } from 'redux/action';
+import { filterSelector } from 'redux/selector';
+import { filterContacts } from 'redux/filterReduser';
 
 export const Filter = () => {
-  const filter = useSelector(state => state.filter.value);
+  const filter = useSelector(filterSelector);
   const dispatch = useDispatch();
 
   const handleFilterChange = ({target: {value}}) =>

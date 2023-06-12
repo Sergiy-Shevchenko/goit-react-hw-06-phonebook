@@ -6,7 +6,7 @@ import { ReactComponent as AddIcon } from '../Icons/phone.svg';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/action';
 
-export const ContactsItem = ({ id, name, number }) => {
+export const ContactsItem = ({ contact: { id, name, number } }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => dispatch(deleteContact(id));
